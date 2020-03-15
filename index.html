@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Skip Link -->
+    <a href="#maincontent" class="skip-link">Skip to main content.</a>
+    <!-- Link to google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,700&display=swap" rel="stylesheet">    
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/1383680287.js" crossorigin="anonymous"></script>
+    <!-- Link to External Custom Stylesheet -->
+    <link rel="stylesheet" href="./styles.css">
+
+    <title>Dress Up</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbarCenter">
+            <span class="navIcon">
+                <i class="fas fa-bars"></i>
+            </span>
+            <p>Dress n Style</p>
+            <div class="cartBtn">
+                <span class="navIcon">
+                    <i class="fas fa-cart-plus"></i>
+                </span>
+                <div class="cartItems">
+
+                </div>
+            </div>
+        </div>
+    </nav><!-- end of Navbar -->
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="banner">
+            <h1 class="bannerTitle">Apparel Collection</h1>
+            <button class="bannerBtn">shop now</button>
+        </div>
+        
+    </header><!-- end of Hero -->
+
+    <!-- Apparel -->
+    <section class="apparel" class="products">
+        <div class="sectionTitle">
+            <h2>Apparel</h2>
+        </div>
+        <div class="productCenter">
+            <!-- single product -->
+            <article class="product">
+                <div class="imgContainer">
+                    <img src="./images/apparel1.jpeg" alt="apparel1" class="productImg">
+                    <button class="bagBtn" data-id="1">
+                        <i class="fas fa-shopping-cart">Add to bag</i>
+                    </button>
+                </div>
+                <h3>t-shirt</h3>
+                <h4>$16</h4>
+            </article>
+            <!-- end of single product -->
+
+        </div>
+    </section>
+    <!-- end of Apparel -->
+
+    <!-- Cart -->
+    <div class="cartOverlay">
+        <div class="cart">
+            <span class="closeCart">
+                <i class="fas fa-window-close"></i>
+            </span>
+            <h2>Your Cart</h2>
+            <div class="cartContent">
+                <!-- Cart Item -->
+                <div class="cartItem">
+                    <img src="./images/apparel1.jpeg" alt="">
+                    <div>
+                        <h4>T-shirt</h4>
+                        <h5>$10.00</h5>
+                        <span class="removeItem">remove</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-chevron-up"></i>
+                        <p class="itemAmount"></p>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <!-- end of Cart Item -->
+            </div>
+            <div class="cartFooter">
+                <h3>Your Total : $ <span class="cartTotal">o</span></h3>
+                <button class="clearCart bannerBtn">Clear Cart</button>
+            </div>
+        </div>
+    </div>
+    <!-- end of Cart -->
+
+    
+</body>
+</html>
