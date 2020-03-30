@@ -1,0 +1,42 @@
+How we add JavaScript functionality to add items and manipulate items in the cart for an E-commerce website.
+
+- A landing page with the app heading, "Dress n Style" followed by a gallery of all the products that the website has to offer for purchase.
+
+- When scrolled down, in the 'Our Products' section, when we hover over the item, the 'Add to Cart' link shows up. 
+
+- The user clicks the itemto add the item to the cart. 
+
+- There will be a cart icon button that will open up the cart when clciked. 
+
+- The cart will show number of items and total amount for all the items.
+
+- An the alert can be added to show the customer that the item has been added to the cart.
+
+- The cart icon will also updates to show the no of items in the cart. 
+
+- The total amount gets updated and the items in the cart also gets updated. 
+
+- Display the money total and item total in the cart.
+
+- Use local storage so even when the page is refreshed, the items persist in the cart.
+
+----------------------------------------------------------------
+
+
+- A remove button can be added below each item in the cart, to remove the item from the cart. 
+
+- We can also have a item increase and decrease button for each item in the cart.
+
+- If we decrease the no of items with the down arrow and once we go below 1 (i.e. zero item), the item will be removed from the cart.
+
+- The cart can be ceared altogether with the 'CLEAR CART' button in the cart.
+
+
+
+
+
+
+
+
+
+- 
