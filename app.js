@@ -42,6 +42,29 @@
         // method to display products
         displayProducts(products){
             console.log(products);
+
+            let result = ''; // create a variable
+
+            // since we get back an array as products, we use array methods
+            products.forEach(product => { // loop over products array of objects
+                result += `
+                <!-- single product -->
+                    <article class="product">
+                    <div class="imgContainer">
+                        <img src=${product.image} alt="apparel1" class="productImg">
+                        <button class="bagBtn" data-id=${product.id}>
+                            <i class="fas fa-shopping-cart">Add to bag</i>
+                        </button>
+                    </div>
+                    <h3>${product.title}</h3>
+                    <h4>$${product.price}</h4>
+                    </article>
+                <!-- end of single product -->
+                `;    // add on tot he empty string stored in result
+            });
+
+            // Do this with jQuery
+            productsDOM.innerHTML = result;
         }
     }
 

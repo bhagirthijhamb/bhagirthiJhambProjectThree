@@ -140,7 +140,7 @@ body {
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
-.productCenter {
+.productsCenter {
   width: 90vw;
   margin: 0 auto;
   max-width: var(--mainWrapper);
