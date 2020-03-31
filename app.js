@@ -60,11 +60,37 @@
                     <h4>$${product.price}</h4>
                     </article>
                 <!-- end of single product -->
-                `;    // add on tot he empty string stored in result
+                `;    // add on to the empty string stored in result
             });
 
             // Do this with jQuery
             productsDOM.innerHTML = result;
+        }
+
+        // Get Bag Buttons
+        getBagButtons(){
+            const buttons = [...document.querySelectorAll(".bagBtn")]; // ...(spread operator) converts nodelist to array
+            // console.log(buttons);
+
+            // get id for the buttons
+            buttons.forEach(button => {
+                let id = button.dataset.id;
+                // console.log(id);
+
+                // check for the item in the cart
+                let inCart = cart.find(item => item.id === id);
+                if(inCart){
+                    button.innerText = "In Cart";
+                    button.disabled = true;
+                }
+                else {
+                    button.addEventListener('click', (event) => {
+                        // console.log(event);
+                        event.target.innerText = " In Cart";
+                        event.target.disabled = true;
+                    })
+                }
+            })
         }
     }
 
@@ -100,6 +126,8 @@
             // since static method, we dont need to create an instance
             // we just call it on the class
             Storage.saveProducts(products);
+        }).then(() => {
+            ui.getBagButtons();
         });
    })
 
