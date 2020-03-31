@@ -129,6 +129,7 @@
             // console.log(cartTotal, cartItems);
         }
 
+        // Create new cart item
         addCartItem(item){
             const div = document.createElement('div');
             div.classList.add('cartItem');
@@ -145,7 +146,10 @@
                         <i class="fas fa-chevron-down" dataId=${item.id}></i>
                     </div>
             `;
-        }
+            // Append item to the Cart Content
+            cartContent.appendChild(div);
+            console.log(cartContent);
+        }        
     }
 
     // LOCAL STORAGE
