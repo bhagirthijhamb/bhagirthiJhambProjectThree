@@ -70,7 +70,11 @@
 
     // LOCAL STORAGE
     class Storage {
-
+        static saveProducts(products){ // products here is just a parameter name
+        // within the the method we have access to the local storage
+        localStorage.setItem("products", JSON.stringify(products)) // setItem is a method of localStorage
+        // .stringify is to convert the JSON to string
+        }
     }
 
     // when the initial HTML document is loaded and parsed w/o waiting for stylesheets, imagesto finish loading.
@@ -90,9 +94,19 @@
         // get all products
         // products.getProducts().then(data => console.log(data));
         // products.getProducts().then(products => console.log(products));
-        products.getProducts().then(products => ui.displayProducts(products));
+        products.getProducts().then(products => {
+            ui.displayProducts(products);
 
+            // since static method, we dont need to create an instance
+            // we just call it on the class
+            Storage.saveProducts(products);
+        });
    })
+
+   /*
+   - we could go to the content ful and just get that one item
+   - but we want to speed things up  so we saved all the things in the local storage (not recommmended where we will have thousands of products)
+   */
 
 
 
