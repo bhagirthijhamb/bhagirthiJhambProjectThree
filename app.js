@@ -113,6 +113,7 @@
                         this.addCartItem(cartItem);
 
                         // show the cart
+                        this.showCart();
                     });
             })
         }
@@ -148,8 +149,31 @@
             `;
             // Append item to the Cart Content
             cartContent.appendChild(div);
-            console.log(cartContent);
+            // console.log(cartContent);
         }        
+
+        // Show the Cart
+        showCart(){
+            cartOverlay.classList.add('transparentBcg');
+            cartDOM.classList.add('showCart');
+        }
+
+        setupApp(){
+            cart = Storage.getCart();
+            this.setCartValues(cart);
+            this.populateCart(cart);
+            cartBtn.addEventListener('click', this.showCart);
+            closeCartBtn.addEventListener('click', this.hideCart);
+        }
+        
+        populateCart(cart){
+            cart.forEach(item => this.addCartItem(item));
+        }
+
+        hideCart(){
+            cartOverlay.classList.remove('transparentBcg');
+            cartDOM.classList.remove('showCart');
+        }
     }
 
     // LOCAL STORAGE
@@ -168,6 +192,10 @@
         static saveCart(cart){
             localStorage.setItem('cart', JSON.stringify(cart));
         }
+
+        static getCart(){
+            return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        }
     }
 
     // when the initial HTML document is loaded and parsed w/o waiting for stylesheets, imagesto finish loading.
@@ -183,6 +211,9 @@
 
         // create instance of UI class
         const products = new Products();
+
+        // setup App
+        ui.setupApp();
 
         // get all products
         // products.getProducts().then(data => console.log(data));
