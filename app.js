@@ -174,6 +174,41 @@
             cartOverlay.classList.remove('transparentBcg');
             cartDOM.classList.remove('showCart');
         }
+
+        cartLogic(){
+            // CLEAR CART button
+
+            // clearCartBtn.addEventListener('click', this.clearCart); // accessing a method within the class. be sure what this is pointing to
+            clearCartBtn.addEventListener('click', () => {
+                this.clearCart();
+            });
+
+            // CART FUNCTIONALITY
+
+        }
+
+        clearCart(){
+            console.log(this); // first this references the button that is clicked not the UI class
+            // Now this refers to the UI class
+
+            let cartItems = cart.map(item => item.id);
+            // console.log(cartItems); // gives the ids of the items in the cart
+
+            cartItems.forEach(id => this.removeItem(id));
+        }
+
+        removeItem(id){
+            cart = cart.filter(item => item.id !== id);
+            this.setCartValues(cart);
+            Storage.saveCart(cart);
+            let button = this.getSingleButton(id);
+            button.disabled = false;
+            button.innerHTML = `<i class="fas fa-shopping-cart"></i> Add to cart`;
+        }
+
+        getSingleButton(id){
+            return buttons.find(button => button.dataset.id === id)''
+        }
     }
 
     // LOCAL STORAGE
@@ -226,6 +261,7 @@
             Storage.saveProducts(products);
         }).then(() => {
             ui.getBagButtons();
+            ui.cartLogic();
         });
    })
 
