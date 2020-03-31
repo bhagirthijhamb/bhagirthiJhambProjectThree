@@ -12,6 +12,9 @@
     // CART
     let cart = [];
 
+    // BUTTONS
+    let buttonsDOM = [];
+
 
     // GETTING THE PRODUCTS (locally(product.json), COntentful)
     class Products {        // syntactical sugar for writing the function constructors
@@ -70,7 +73,10 @@
         // Get Bag Buttons
         getBagButtons(){
             const buttons = [...document.querySelectorAll(".bagBtn")]; // ...(spread operator) converts nodelist to array
+            // find() method works on an array (not on Nodelist)
             // console.log(buttons);
+
+            buttonsDOM = buttons;
 
             // get id for the buttons
             buttons.forEach(button => {
@@ -83,14 +89,62 @@
                     button.innerText = "In Cart";
                     button.disabled = true;
                 }
-                else {
+                
                     button.addEventListener('click', (event) => {
                         // console.log(event);
                         event.target.innerText = " In Cart";
                         event.target.disabled = true;
-                    })
-                }
+
+                        // get product from the products based on the id
+                        let cartItem = {...Storage.getProduct(id), amount: 1}; // add amount to the property (key: value pair to the object representing clicked item)
+                        // console.log(cartItem);
+
+                        // add product to the cart
+                        cart = [...cart, cartItem]; // get all the items from cart array and add cartItem (just created)
+                        // console.log(cart);
+
+                        // save the cart in the local storage
+                        Storage.saveCart(cart);
+
+                        // set cart values
+                        this.setCartValues(cart);
+
+                        // display cart item
+                        this.addCartItem(cartItem);
+
+                        // show the cart
+                    });
             })
+        }
+
+        setCartValues(cart){
+            let tempTotal = 0;
+            let itemsTotal = 0;
+            cart.map(item => {
+                tempTotal += item.price * item.amount;
+                itemsTotal += item.amount;
+            });
+            cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+            cartItems.innerText = itemsTotal;
+            // console.log(cartTotal, cartItems);
+        }
+
+        addCartItem(item){
+            const div = document.createElement('div');
+            div.classList.add('cartItem');
+            div.innerHTML = `
+                <img src=${item.image} alt="product">
+                    <div>
+                        <h4>${item.title}</h4>
+                        <h5>$${item.price}</h5>
+                        <span class="removeItem" dataId=${item.id}>remove</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-chevron-up" dataId=${item.id}></i>
+                        <p class="itemAmount">${item.amount}</p>
+                        <i class="fas fa-chevron-down" dataId=${item.id}></i>
+                    </div>
+            `;
         }
     }
 
@@ -100,6 +154,15 @@
         // within the the method we have access to the local storage
         localStorage.setItem("products", JSON.stringify(products)) // setItem is a method of localStorage
         // .stringify is to convert the JSON to string
+        }
+
+        static getProduct(id){
+            let products = JSON.parse(localStorage.getItem('products')); // return an array.
+            return products.find(product => product.id === id);
+        }
+
+        static saveCart(cart){
+            localStorage.setItem('cart', JSON.stringify(cart));
         }
     }
 
