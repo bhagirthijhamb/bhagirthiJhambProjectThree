@@ -56,7 +56,7 @@
                     <div class="imgContainer">
                         <img src=${product.image} alt="apparel1" class="productImg">
                         <button class="bagBtn" data-id=${product.id}>
-                            <i class="fas fa-shopping-cart">Add to bag</i>
+                            <i class="fas fa-shopping-cart">Add to cart</i>
                         </button>
                     </div>
                     <h3>${product.title}</h3>
@@ -139,12 +139,12 @@
                     <div>
                         <h4>${item.title}</h4>
                         <h5>$${item.price}</h5>
-                        <span class="removeItem" dataId=${item.id}>remove</span>
+                        <span class="removeItem" data-id=${item.id}>remove</span>
                     </div>
                     <div>
-                        <i class="fas fa-chevron-up" dataId=${item.id}></i>
+                        <i class="fas fa-chevron-up" data-id=${item.id}></i>
                         <p class="itemAmount">${item.amount}</p>
-                        <i class="fas fa-chevron-down" dataId=${item.id}></i>
+                        <i class="fas fa-chevron-down" data-id=${item.id}></i>
                     </div>
             `;
             // Append item to the Cart Content
@@ -184,6 +184,19 @@
             });
 
             // CART FUNCTIONALITY
+            cartContent.addEventListener('click', event => {
+                // console.log(event.target);
+                if(event.target.classList.contains('removeItem')){
+                    let removeItem = event.target;
+                    // console.log(removeItem);
+                    let id = removeItem.dataset.id;
+                    // console.log(id);
+
+                    // console.log(removeItem.parentElement.parentElement);
+                    cartContent.removeChild(removeItem.parentElement.parentElement);
+                    this.removeItem(id);
+                }
+            })
 
         }
 
@@ -195,6 +208,14 @@
             // console.log(cartItems); // gives the ids of the items in the cart
 
             cartItems.forEach(id => this.removeItem(id));
+            console.log(cartContent.children);
+
+            // Remove items from the DOM
+            while(cartContent.children.length > 0){
+                cartContent.removeChild(cartContent.children[0]);
+                console.log(cartContent.children);
+            }
+            this.hideCart();
         }
 
         removeItem(id){
@@ -207,7 +228,7 @@
         }
 
         getSingleButton(id){
-            return buttons.find(button => button.dataset.id === id)''
+            return buttonsDOM.find(button => button.dataset.id === id)
         }
     }
 
